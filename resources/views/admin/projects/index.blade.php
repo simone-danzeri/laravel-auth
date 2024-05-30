@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Lista Progetti</h1>
+    <h1 class="mb-4">Projects List</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -21,7 +21,7 @@
                     {{-- qui tutte le actions --}}
                     <td>
                         <div>
-                            <a href="#">View</a>
+                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
                         </div>
                     </td>
                 </tr>
