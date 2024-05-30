@@ -18,6 +18,9 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <div>Welcome Mr. {{ $user->name }}</div>
+
                 </div>
             </div>
         </div>
