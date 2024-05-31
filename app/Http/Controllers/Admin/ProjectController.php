@@ -38,6 +38,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        // validazione
+        $request->validate(
+            [
+                'name' => 'required|max:249|unique:projects,name',
+                'client_name' => 'required',
+                'summary' => 'max:500'
+            ]
+        );
+
         $formData = $request->all();
         $newProject = new Project();
         $newProject['slug'] = Str::slug($formData['name'], '-');
