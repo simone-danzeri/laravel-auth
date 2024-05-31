@@ -40,8 +40,9 @@ class ProjectController extends Controller
     {
         $formData = $request->all();
         $newProject = new Project();
+        $newProject['slug'] = Str::slug($formData['name'], '-');
         $newProject->fill($formData);
-        $newProject->slug = Str::slug($newProject->name, '-');
+        // $newProject->slug = Str::slug($newProject->name, '-');
         $newProject->save();
 
         return redirect()->route('admin.projects.show', ['project' => $newProject->id]);
@@ -92,8 +93,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        // dd('oh mannaggia fai attenzione!');
+        $project->delete();
+        return redirect()->route('admin.projects.index');
     }
 }

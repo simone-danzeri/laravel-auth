@@ -20,11 +20,18 @@
                     <td>{{ $project->created_at }}</td>
                     {{-- qui tutte le actions --}}
                     <td>
-                        <div>
-                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
+                        <div class="my-1">
+                            <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
                         </div>
-                        <div>
-                            <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+                        <div class="my-1">
+                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+                        </div>
+                        <div class="my-1">
+                            <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
                         </div>
                     </td>
                 </tr>
