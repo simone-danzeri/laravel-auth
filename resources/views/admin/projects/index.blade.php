@@ -30,7 +30,7 @@
                             <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete<i class="fa-solid fa-explosion px-2"></i></button>
+                                <button class="btn btn-danger js-delete-btn" data-project-name = "{{ $project->name }}" type="submit">Delete<i class="fa-solid fa-explosion px-2"></i></button>
                             </form>
                         </div>
                     </td>
@@ -41,4 +41,23 @@
     <div class="my-4">
         <a href="#" class="btn btn-primary">Back Top</a>
     </div>
+        {{-- Modale --}}
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="confirmModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{-- qui ci andrà il testo della modale --}}
+                    Do you really want to delete this project?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="modalDeleteBtn">Delete</button>
+                </div>
+            </div>
+            </div>
+        </div>
 @endsection
