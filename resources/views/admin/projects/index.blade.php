@@ -38,4 +38,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="my-4">
+        <a href="#" class="btn btn-primary">Back Top</a>
+    </div>
 @endsection
