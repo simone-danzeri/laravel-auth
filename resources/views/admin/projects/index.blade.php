@@ -21,16 +21,16 @@
                     {{-- qui tutte le actions --}}
                     <td>
                         <div class="my-1">
-                            <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
+                            <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View<i class="fa-solid fa-magnifying-glass px-2"></i></a>
                         </div>
                         <div class="my-1">
-                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit<i class="fa-regular fa-pen-to-square px-2"></i></a>
                         </div>
                         <div class="my-1">
                             <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-danger" type="submit">Delete<i class="fa-solid fa-explosion px-2"></i></button>
                             </form>
                         </div>
                     </td>
