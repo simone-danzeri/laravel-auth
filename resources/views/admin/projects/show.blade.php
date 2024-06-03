@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 @section('content')
     <h3>{{ $project->name }}</h3>
+    {{-- Flash Message --}}
+    <div>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
+    {{-- Flash Message --}}
     <small class="my-1"><strong>Slug</strong>: {{ $project->slug }}</small>
     <div class="my-2"><strong>Made for</strong>: {{ $project->client_name }}</div>
     @if ($project->summary)
@@ -13,10 +22,10 @@
         <small><strong>Last updated at</strong>: {{ $project->updated_at }}</small>
     </div>
     <div class="my-2">
-        <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit<i class="fa-regular fa-pen-to-square px-2"></i></a>
+        <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Edit<i class="fa-regular fa-pen-to-square px-2"></i></a>
     </div>
     <div class="my-2">
-        <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
+        <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger js-delete-btn" data-project-name = "{{ $project->name }}" type="submit">Delete<i class="fa-solid fa-explosion px-2"></i></button>

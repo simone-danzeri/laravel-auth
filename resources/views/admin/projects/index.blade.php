@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 @section('content')
     <h1 class="mb-4">Projects List</h1>
+        {{-- Flash Message --}}
+        <div>
+            @if (session()->has('message'))
+                <div class="alert alert-danger">
+                    {{ session('message') }}
+                </div>
+            @endif
+        </div>
+        {{-- Flash Message --}}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -21,13 +30,13 @@
                     {{-- qui tutte le actions --}}
                     <td>
                         <div class="my-1">
-                            <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View<i class="fa-solid fa-magnifying-glass px-2"></i></a>
+                            <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">View<i class="fa-solid fa-magnifying-glass px-2"></i></a>
                         </div>
                         <div class="my-1">
-                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit<i class="fa-regular fa-pen-to-square px-2"></i></a>
+                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Edit<i class="fa-regular fa-pen-to-square px-2"></i></a>
                         </div>
                         <div class="my-1">
-                            <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
+                            <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger js-delete-btn" data-project-name = "{{ $project->name }}" type="submit">Delete<i class="fa-solid fa-explosion px-2"></i></button>

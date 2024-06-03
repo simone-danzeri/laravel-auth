@@ -55,7 +55,8 @@ class ProjectController extends Controller
         // $newProject->slug = Str::slug($newProject->name, '-');
         $newProject->save();
 
-        return redirect()->route('admin.projects.show', ['project' => $newProject->id]);
+        session()->flash('message', 'Project successfully created.');
+        return redirect()->route('admin.projects.show', ['project' => $newProject->slug]);
 
     }
 
@@ -106,7 +107,8 @@ class ProjectController extends Controller
         $formData = $request->all();
         $project['slug'] = Str::slug($formData['name'], '-');
         $project->update($formData);
-        return redirect()->route('admin.projects.show', ['project' => $project->id]);
+        session()->flash('message', 'Project successfully updated.');
+        return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }
 
     /**
@@ -119,6 +121,7 @@ class ProjectController extends Controller
     {
         // dd('oh mannaggia fai attenzione!');
         $project->delete();
+        session()->flash('message', 'Project successfully deleted.');
         return redirect()->route('admin.projects.index');
     }
 }
