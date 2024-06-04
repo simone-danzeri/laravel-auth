@@ -111,6 +111,13 @@ class ProjectController extends Controller
             ]
         );
         $formData = $request->all();
+        if ($request->hasFile('cover_image')) {
+            if($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            $img_path = Storage::disk('public')->put('project_images', $formData['cover_image']);
+            $formData['cover_image'] = $img_path;
+        }
         $project['slug'] = Str::slug($formData['name'], '-');
         $project->update($formData);
         session()->flash('message', 'Project successfully updated.');
