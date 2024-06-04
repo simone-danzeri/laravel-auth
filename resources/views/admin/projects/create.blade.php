@@ -12,12 +12,16 @@
         </div>
     @endif
 
-    <form class="my-4" method="POST" action="{{ route('admin.projects.store') }}">
+    <form class="my-4" method="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
           <label for="name" class="form-label">Project Name</label>
           <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
         </div>
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">Upload a file</label>
+            <input class="form-control" type="file" id="cover_image" name="cover_image">
+          </div>
         <div class="mb-3">
             <label for="client_name" class="form-label">Client Name</label>
             <input type="text" class="form-control" id="client_name" name="client_name" value="{{ old('client_name') }}">
