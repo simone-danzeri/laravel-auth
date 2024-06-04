@@ -45,7 +45,8 @@ class ProjectController extends Controller
             [
                 'name' => 'required|max:249|unique:projects,name',
                 'client_name' => 'required',
-                'summary' => 'max:500'
+                'summary' => 'max:500',
+                'cover_image' => 'nullable|image|max:256'
             ]
         );
 
@@ -107,7 +108,8 @@ class ProjectController extends Controller
                     Rule::unique('projects')->ignore($project->id)
                 ],
                 'client_name' => 'required',
-                'summary' => 'max:500'
+                'summary' => 'max:500',
+                'cover_image' => 'nullable|image|max:256'
             ]
         );
         $formData = $request->all();
